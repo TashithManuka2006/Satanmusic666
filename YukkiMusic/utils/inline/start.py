@@ -50,3 +50,13 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
         ],
     ]
     return buttons
+
+close_key = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text=" Cʟᴏsᴇ ", callback_data="close"
+                    )
+                ]
+            ]
+        )
