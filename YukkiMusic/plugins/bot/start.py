@@ -199,7 +199,7 @@ async def start_comm(client, message: Message, _):
                     config.LOG_GROUP_ID,
                     f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
                 )
-    else:  
+    else:
         try:
             await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
@@ -207,7 +207,7 @@ async def start_comm(client, message: Message, _):
             OWNER = None
         out = private_panel(_, app.username, OWNER)
         if config.START_IMG_URL:
-             try: 
+            try:
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
                     caption=_["start_2"].format(
@@ -241,11 +241,9 @@ async def start_comm(client, message: Message, _):
 )
 @LanguageStart
 async def testbot(client, message: Message, _):
-    OWNER = OWNER_ID[0]
-    out = start_pannel(_, app.username)
-    return await message.reply_photo(
-               photo=config.START_IMG_URL,
-               caption=_["start_1"].format(
+    out = start_pannel(_)
+    return await message.reply_text(
+        _["start_1"].format(
             message.chat.title, config.MUSIC_BOT_NAME
         ),
         reply_markup=InlineKeyboardMarkup(out),
@@ -261,7 +259,7 @@ async def welcome(client, message: Message):
     if config.PRIVATE_BOT_MODE == str(True):
         if not await is_served_private_chat(message.chat.id):
             await message.reply_text(
-                "**ᴩʀɪᴠᴀᴛᴇ ᴍᴜsɪᴄ ʙᴏᴛ**\n\nᴏɴʟʏ ғᴏʀ ᴛʜᴇ ᴄʜᴀᴛs ᴀᴜᴛʜᴏʀɪsᴇᴅ ʙʏ ᴍʏ ᴏᴡɴᴇʀ, ʀᴇǫᴜᴇsᴛ ɪɴ ᴍʏ ᴏᴡɴᴇʀ's ᴩᴍ ᴛᴏ ᴀᴜᴛʜᴏʀɪsᴇ ʏᴏᴜʀ ᴄʜᴀᴛ ᴀɴᴅ ɪғ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴡᴀɴᴛ ᴛᴏ ᴅᴏ sᴏ ᴛʜᴇɴ ғᴜ*ᴋ ᴏғғ ʙᴇᴄᴀᴜsᴇ ɪ'ᴍ ʟᴇᴀᴠɪɴɢ."
+                "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
             )
             return await app.leave_chat(message.chat.id)
     else:
@@ -272,7 +270,7 @@ async def welcome(client, message: Message):
             _ = get_string(language)
             if member.id == app.id:
                 chat_type = message.chat.type
-                if chat_type != "supergroup":
+                if chat_type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_6"])
                     return await app.leave_chat(message.chat.id)
                 if chat_id in await blacklisted_chats():
@@ -283,11 +281,9 @@ async def welcome(client, message: Message):
                     )
                     return await app.leave_chat(chat_id)
                 userbot = await get_assistant(message.chat.id)
-                OWNER = OWNER_ID[0]
-                out = start_pannel(_, app.username, OWNER)
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
-                    caption=_["start_3"].format(
+                out = start_pannel(_)
+                await message.reply_text(
+                    _["start_3"].format(
                         config.MUSIC_BOT_NAME,
                         userbot.username,
                         userbot.id,
