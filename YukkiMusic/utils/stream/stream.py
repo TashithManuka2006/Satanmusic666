@@ -176,6 +176,7 @@ async def stream(
                 _["queue_4"].format(
                     position, title[:30], duration_min, user_name
                 ),
+                reply_markup=InlineKeyboardMarkup(button),
             )
         else:
             if not forceplay:
