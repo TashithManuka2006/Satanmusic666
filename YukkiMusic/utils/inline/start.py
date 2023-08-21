@@ -15,38 +15,120 @@ from config import GITHUB_REPO, SUPPORT_CHANNEL, SUPPORT_GROUP
 from YukkiMusic import app
 
 
-def start_pannel(_, BOT_USERNAME):
+def start_pannel(_):
     buttons = [
         [
             InlineKeyboardButton(
-                text=" Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ",
-                url=f"https://t.me/{BOT_USERNAME}?startgroup=new",
+                text=_["S_B_1"],
+                url=f"https://t.me/{app.username}?start=help",
+            ),
+            InlineKeyboardButton(
+                text=_["S_B_2"], callback_data="settings_helper"
+            ),
+        ],
+    ]
+    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+        buttons.append(
+            [
+                InlineKeyboardButton(
+                    text=_["S_B_4"], url=f"{SUPPORT_CHANNEL}"
+                ),
+                InlineKeyboardButton(
+                    text=_["S_B_3"], url=f"{SUPPORT_GROUP}"
+                ),
+            ]
+        )
+    else:
+        if SUPPORT_CHANNEL:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_4"], url=f"{SUPPORT_CHANNEL}"
+                    )
+                ]
             )
-        ],
-        [
-            InlineKeyboardButton(text="Hᴇʟᴘ", callback_data="settings_back_helper"),
-            InlineKeyboardButton(text="Sᴇᴛᴛɪɴɢs", callback_data="settings_helper"),
-        ],
-        ]
+        if SUPPORT_GROUP:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_3"], url=f"{SUPPORT_GROUP}"
+                    )
+                ]
+            )
     return buttons
+
 
 def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
     buttons = [
         [
             InlineKeyboardButton(
-                text=" ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴩ ",
-                url=f"https://t.me/{BOT_USERNAME}?startgroup=new",
+                text=_["S_B_8"], callback_data="settings_back_helper"
             )
-        ],
-        [
-            InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ", url=config.SUPPORT_GROUP),
-            InlineKeyboardButton(text="Cʜᴀɴɴᴇʟ", url=config.SUPPORT_CHANNEL),
-        ],
-        [
-            InlineKeyboardButton(text=" Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅꜱ ", callback_data="settings_back_helper"),
-        ],
-        [
-            InlineKeyboardButton(text=" Oᴡɴᴇʀ ", user_id=OWNER),
-        ],
+        ]
     ]
+    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+        buttons.append(
+            [
+                InlineKeyboardButton(
+                    text=_["S_B_4"], url=f"{SUPPORT_CHANNEL}"
+                ),
+                InlineKeyboardButton(
+                    text=_["S_B_3"], url=f"{SUPPORT_GROUP}"
+                ),
+            ]
+        )
+    else:
+        if SUPPORT_CHANNEL:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_4"], url=f"{SUPPORT_CHANNEL}"
+                    )
+                ]
+            )
+        if SUPPORT_GROUP:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_3"], url=f"{SUPPORT_GROUP}"
+                    )
+                ]
+            )
+    buttons.append(
+        [
+            InlineKeyboardButton(
+                text=_["S_B_5"],
+                url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+            )
+        ]
+    )
+    if GITHUB_REPO and OWNER:
+        buttons.append(
+            [
+                InlineKeyboardButton(text=_["S_B_7"], user_id=OWNER),
+                InlineKeyboardButton(
+                    text=_["S_B_6"], url=f"https://github.com/Rahulsharma45/YukkiMusicBot"
+                ),
+            ]
+        )
+    else:
+        if GITHUB_REPO:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_6"], url=f"https://github.com/Rahulsharma45/YukkiMusicBot"
+                    ),
+                ]
+            )
+        if OWNER:
+            buttons.append(
+                [
+                    InlineKeyboardButton(
+                        text=_["S_B_7"], user_id=OWNER
+                    ),
+                ]
+            )
+    buttons.append(
+        [InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")]
+    )
     return buttons
