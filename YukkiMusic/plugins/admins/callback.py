@@ -26,11 +26,13 @@ from YukkiMusic.utils.database import (is_active_chat,
                                        set_loop)
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.formatters import seconds_to_min
-from YukkiMusic.utils.inline.play import (panel_markup_1,
-                                          panel_markup_2,
-                                          panel_markup_3,
-                                          stream_markup,
-                                          telegram_markup)
+from YukkiMusic.utils.inline import (
+    stream_markup,
+    stream_markup_timer,
+    telegram_markup,
+    telegram_markup_timer,
+    close_keyboard,
+)
 from YukkiMusic.utils.stream.autoclear import auto_clean
 from YukkiMusic.utils.thumbnails import gen_thumb
 
