@@ -280,23 +280,19 @@ async def overall_stats(client, CallbackQuery, _):
     else:
         ass = "No"
     cm = config.CLEANMODE_DELETE_MINS
-    text = f"""**Bot's Stats and Information:**
+    text = f"""**[˹ꜱᴀᴛᴀɴ​ ​​​ꭙ ᴍᴜꜱɪᴄ˼ ](https://t.me/Satan666MusicBot) sᴛᴀᴛs ᴀɴᴅ ɪɴғᴏ :**
 
-**Imported Modules:** {mod}
-**Served Chats:** {served_chats} 
-**Served Users:** {served_users} 
-**Blocked Users:** {blocked} 
-**Sudo Users:** {sudoers} 
+**ᴄʜᴀᴛs:** {served_chats} 
+**ᴜsᴇʀs:** {served_users} 
+**ʙʟᴏᴄᴋᴇᴅ:** {blocked} 
+**sᴜᴅᴏᴇʀs:** {sudoers} 
     
-**Total Queries:** {total_queries} 
-**Total Assistants:** {assistant}
-**Auto Leaving Assistant:** {ass}
-**Cleanmode duration:** {cm} Mins
+**ᴀssɪsᴛᴀɴᴛs:** {assistant}
+**ᴀssɪsᴛᴀɴᴛs ᴀᴜᴛᴏ ʟᴇᴀᴠᴇ:** {ass}
+**ᴄʟᴇᴀɴᴍᴏᴅᴇ:** {cm} ᴍɪɴᴜᴛᴇs
 
-**Play Duration Limit:** {play_duration} Mins
-**Song Download Limit:** {song} Mins
-**Bot's Server Playlist Limit:** {playlist_limit}
-**Playlist Play Limit:** {fetch_playlist}"""
+**ᴘʟᴀʏ ᴅᴜʀᴀᴛɪᴏɴ ʟɪᴍɪᴛ:** {play_duration} ᴍɪɴᴜᴛᴇs
+**sᴏɴɢ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪᴍɪᴛ:** {song} ᴍɪɴᴜᴛᴇs"""
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
     try:
         await CallbackQuery.edit_message_media(
