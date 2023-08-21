@@ -3,7 +3,7 @@ import math
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 import config
-from IroX.utils.formatters import time_to_seconds
+from YukkiMusic.utils.formatters import time_to_seconds
 
 
 ## After Edits with Timer Bar
