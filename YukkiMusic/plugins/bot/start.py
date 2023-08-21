@@ -199,17 +199,15 @@ async def start_comm(client, message: Message, _):
                     config.LOG_GROUP_ID,
                     f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
                 )
-    else:
+ else:
         try:
             await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
         except:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
-        image = config.START_IMG_URL
-        served_chats = len(await get_served_chats())
-        served_users = len(await get_served_users())
-        try:
+        if config.START_IMG_URL:
+            try:
             await message.reply_sticker("CAACAgUAAxkBAAIMpmS_VktCygftozoTLXFpqZJeS2_EAAIQCwAC5wiZVV6Lj6Hn1uPELwQ")
             await message.reply_photo(
                 photo=image,
