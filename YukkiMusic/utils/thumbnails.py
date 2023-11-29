@@ -82,7 +82,7 @@ async def gen_thumb(videoid):
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((520, 520), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
-        background.paste(logo, (450,90))
+        background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("assets/font2.ttf", 40)
         font2 = ImageFont.truetype("assets/font2.ttf", 70)
@@ -105,7 +105,7 @@ async def gen_thumb(videoid):
             if j == 1:
                 j += 1
                 draw.text(
-                    (270, 600),
+                    (600, 340),
                     f"{line}",
                     fill="white",
                     stroke_width=1,
@@ -115,7 +115,7 @@ async def gen_thumb(videoid):
             if j == 0:
                 j += 1
                 draw.text(
-                    (270, 520),
+                    (600, 280),
                     f"{line}",
                     fill="white",
                     stroke_width=1,
@@ -123,9 +123,21 @@ async def gen_thumb(videoid):
                     font=font,
                 )
 
+      draw.text(
+            (600, 450),
+            f"Views : {views[:23]}",
+            (255, 255, 255),
+            font=arial,
+        )
         draw.text(
             (600, 500),
             f"Duration : {duration[:23]} Mins",
+            (255, 255, 255),
+            font=arial,
+        )
+        draw.text(
+            (600, 550),
+            f"Channel : {channel}",
             (255, 255, 255),
             font=arial,
         )
